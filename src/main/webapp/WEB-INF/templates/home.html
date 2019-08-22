@@ -1,0 +1,15 @@
+<!DOCTYPE html>
+<html lang="en"
+      xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:th="http://www.thymeleaf.org">
+<!--声明Themeleaf的命名空间即可，不需要像jsp一样引入tag lib，还有maven依赖等-->
+<head>
+    <meta charset="UTF-8">
+    <title>Spittr</title>
+</head>
+<body>
+<h1>Welcome to Spitrr</h1>
+<a th:href="@{/spittles}">Spittles</a> |
+<a th:href="@{/spittles/register}">Register</a>
+</body>
+</html>
