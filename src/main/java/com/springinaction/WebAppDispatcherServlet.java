@@ -2,6 +2,9 @@ package com.springinaction;
 
 import org.springframework.web.servlet.support.AbstractAnnotationConfigDispatcherServletInitializer;
 
+import javax.servlet.MultipartConfigElement;
+import javax.servlet.ServletRegistration;
+
 public class WebAppDispatcherServlet
         //换成web.xml来配置DispatcherServlet和ContextLoaderListener
         extends AbstractAnnotationConfigDispatcherServletInitializer {
@@ -20,5 +23,10 @@ public class WebAppDispatcherServlet
     @Override
     protected String[] getServletMappings() {
         return new String[]{"/"};
+    }
+
+    @Override
+    protected void customizeRegistration(ServletRegistration.Dynamic registration) {
+        registration.setMultipartConfig(new MultipartConfigElement("/tmp/spittr/upload", 2097152, 4194304, 0));
     }
 }

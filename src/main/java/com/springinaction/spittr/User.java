@@ -17,10 +17,11 @@ public class User {
     String lastName;
 
     @NotNull
-    @Size(min=5, max=6, message = "{username.size}")
+//    @Size(min=5, max=6, message = "{username.size}")
     String username;
 
     @NotNull
     @Size(min=5, max=6, message = "{password.size}")
     String password;
+
 }

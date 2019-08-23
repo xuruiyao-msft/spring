@@ -36,6 +36,8 @@ public class WebConfig extends WebMvcConfigurerAdapter {
         ThymeleafViewResolver thymeleafViewResolver = new ThymeleafViewResolver();
         thymeleafViewResolver.setTemplateEngine(engine);
         thymeleafViewResolver.setOrder(1);
+        //解决视图名字中有中文问题
+        thymeleafViewResolver.setCharacterEncoding("UTF-8");
         return thymeleafViewResolver;
     }
 
@@ -54,6 +56,8 @@ public class WebConfig extends WebMvcConfigurerAdapter {
         springResourceTemplateResolver.setPrefix("/WEB-INF/templates/");
         springResourceTemplateResolver.setSuffix(".html");
         springResourceTemplateResolver.setTemplateMode(TemplateMode.HTML);
+        //解决视图内容有中文问题
+        springResourceTemplateResolver.setCharacterEncoding("UTF-8");
         return springResourceTemplateResolver;
     }
 
@@ -61,4 +65,5 @@ public class WebConfig extends WebMvcConfigurerAdapter {
     public void configureDefaultServletHandling(DefaultServletHandlerConfigurer configurer) {
         configurer.enable();
     }
+
 }

@@ -1,12 +1,17 @@
 package com.springinaction.spittr;
 
+import com.springinaction.exceptions.SpittrNotFound;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.Errors;
 import org.springframework.web.bind.annotation.*;
+import org.springframework.web.multipart.MultipartFile;
 
 import javax.validation.Valid;
+import java.io.File;
+import java.io.IOException;
+import java.net.URLEncoder;
 
 @Controller
 @RequestMapping("/spittles")
@@ -39,16 +44,20 @@ public class SpitrrController {
     }
 
     @RequestMapping(value = "/register", method = RequestMethod.POST)
-    public String submit(@Valid User user, Errors errors) {
+    public String submit(@RequestPart("picture") MultipartFile picture, @Valid User user, Errors errors) throws IOException {
         if (errors.hasErrors()) {
             return "registration";
         }
+        picture.transferTo(new File("/tmp/" + picture.getOriginalFilename()));
         return "redirect:/spittles/" + user.getUsername();
     }
 
     @RequestMapping(value = "/{username}", method = RequestMethod.GET)
     public String showInfo(@PathVariable String username, Model model) {
         model.addAttribute("spittle", spittleRepository.findByUserName(username));
+        if (true) {
+            throw new SpittrNotFound();
+        }
         return "showinfo";
     }
 

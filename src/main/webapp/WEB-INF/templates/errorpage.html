@@ -5,11 +5,10 @@
 <!--声明Themeleaf的命名空间即可，不需要像jsp一样引入tag lib，还有maven依赖等-->
 <head>
     <meta charset="UTF-8">
-    <title>Title</title>
+    <title>Spittr</title>
 </head>
 <body>
-<div th:object="${spittle}">
-    <p> username: <td th:text="*{message}"></td></p>
-</div>
+<h1>Welcome to Spitrr</h1>
+<a th:href="@{/spittles/register}">error, please go back </a>
 </body>
 </html>
