@@ -1,5 +1,6 @@
-package com.springinaction.database;
+package com.database.hibernate;
 
+import com.springinaction.datasources.UserRepository;
 import com.springinaction.spittr.User;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
@@ -13,7 +14,8 @@ import java.util.List;
 
 @Repository
 @Transactional
-public class OrmHibernateUserRepository implements UserRepository{
+//这里必须加@Transactional，否则新的请求过来不能启动tx
+public class OrmHibernateUserRepository implements UserRepository {
 
     private SessionFactory sessionFactory;
 

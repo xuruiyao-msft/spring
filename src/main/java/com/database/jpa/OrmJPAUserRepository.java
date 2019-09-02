@@ -1,17 +1,16 @@
-package com.springinaction.database;
+package com.database.jpa;
 
 
+import com.springinaction.datasources.UserRepository;
 import com.springinaction.spittr.User;
 import org.springframework.stereotype.Repository;
 
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
-import javax.transaction.Transactional;
 import java.util.List;
 
 @Repository
-@Transactional
-public class OrmJPAUserRepository implements UserRepository{
+public class OrmJPAUserRepository implements UserRepository {
 
     //使用该注解不会真的注入一个entityManager实例，而是注入一个代理，每次请求都会创建一个entityManager，保证线程安全
     @PersistenceContext

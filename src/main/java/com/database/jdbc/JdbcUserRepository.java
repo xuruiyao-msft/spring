@@ -1,5 +1,6 @@
-package com.springinaction.database;
+package com.database.jdbc;
 
+import com.springinaction.datasources.UserRepository;
 import com.springinaction.spittr.User;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.jdbc.core.JdbcOperations;
@@ -11,6 +12,7 @@ import java.sql.SQLException;
 import java.util.List;
 
 //注解@Repository表明该类会被扫描成一个bean
+//这里不加@Transactional也是可以的，奇怪
 @Repository
 public class JdbcUserRepository implements UserRepository {
 

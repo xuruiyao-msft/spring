@@ -1,4 +1,4 @@
-package com.springinaction.database;
+package com.springinaction.datasources;
 
 import lombok.Data;
 import org.springframework.beans.factory.annotation.Value;

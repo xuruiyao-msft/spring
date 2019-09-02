@@ -1,4 +1,4 @@
-package com.springinaction.database;
+package com.springinaction.datasources;
 
 import com.springinaction.spittr.User;
 

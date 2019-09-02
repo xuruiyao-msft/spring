@@ -1,5 +1,7 @@
-package com.springinaction.database;
+package com.database.jdbc;
 
+import com.springinaction.datasources.UserRepository;
+import com.springinaction.datasources.DataSources;
 import com.springinaction.spittr.User;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -11,9 +13,9 @@ import org.springframework.web.bind.annotation.RequestMethod;
 
 @Controller
 @RequestMapping("/persistance")
-public class PersistanceController {
+public class JdbcPersistanceController {
 
-    private static final Logger LOG = LoggerFactory.getLogger(PersistanceController.class);
+    private static final Logger LOG = LoggerFactory.getLogger(JdbcPersistanceController.class);
 
     @Autowired
     DataSources profileDataSource;
@@ -22,15 +24,6 @@ public class PersistanceController {
     //这里如果写成JdbcUserRepository类型会出错
     @Autowired
     UserRepository jdbcUserRepository;
-
-    @Autowired
-    UserRepository ormHibernateUserRepository;
-
-    @Autowired
-    UserRepository ormJPAUserRepository;
-
-    @Autowired
-    SpringDataJpaRepository springDataJpaRepository;
 
     @RequestMapping(value = "/jndi", method = RequestMethod.GET)
     public String jndiDataSource() {
@@ -75,24 +68,10 @@ public class PersistanceController {
         return "home";
     }
 
-    @RequestMapping(value = "/orm/hbm", method = RequestMethod.GET)
-    public String findUserByHibernalte() {
-        User user = ormHibernateUserRepository.findOne(1);
-        LOG.info("find user: " + user);
-        return "home";
-    }
-
-    @RequestMapping(value = "/orm/jpa", method = RequestMethod.GET)
-    public String findUserByJPA() {
-        User user = ormJPAUserRepository.findOne(1);
-        LOG.info("find user: " + user);
-        return "home";
-    }
-
-    @RequestMapping(value = "/orm/data", method = RequestMethod.GET)
-    public String findUserBySpringDataJPA() {
-        User user = springDataJpaRepository.findByIdOOrderByFirstName(1l);
-        LOG.info("find user: " + user);
+    @RequestMapping(value = "/save/user", method = RequestMethod.GET)
+    public String save() {
+        User user = new User(2, "test2", "test2", "test2", "test2");
+        jdbcUserRepository.save(user);
         return "home";
     }
 }
