@@ -34,7 +34,7 @@ public class SpitrrController {
     @RequestMapping(value = "/find/{spittleId}", method = RequestMethod.GET)
     public String spittle(@PathVariable("spittleId") long spittleId, Model model) {
         model.addAttribute(spittleRepository.findOne(spittleId));
-        return "spittle";
+        return "showinfo";
     }
 
     @RequestMapping(value = "/register", method = RequestMethod.GET)
@@ -55,7 +55,7 @@ public class SpitrrController {
     @RequestMapping(value = "/{username}", method = RequestMethod.GET)
     public String showInfo(@PathVariable String username, Model model) {
         model.addAttribute("spittle", spittleRepository.findByUserName(username));
-        if (true) {
+        if (false) {
             throw new SpittrNotFound();
         }
         return "showinfo";

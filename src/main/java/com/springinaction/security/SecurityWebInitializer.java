@@ -1,0 +1,9 @@
+package com.springinaction.security;
+
+import org.springframework.security.web.context.AbstractSecurityWebApplicationInitializer;
+
+//该方法会自动映射DelegatingFilterProxy 到springSecurityFilterChain实例上
+//springSecurityFilterChain本身是一个特殊的filter，它可以链接任意一个或者多个其它的filter，来提供不同的安全特性，
+//但是你几乎不用管这些细节，因为你不需要显示得声明者一系列的filter，当我们启用web安全性的时候，会自动创建这些filter
+public class SecurityWebInitializer extends AbstractSecurityWebApplicationInitializer {
+}
